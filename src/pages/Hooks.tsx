@@ -29,7 +29,7 @@ function Hooks() {
 
   // useFetch demo
   const { data: posts, loading, error, refetch } = useFetch<Post[]>(
-    'https://jsonplaceholder.typicode.com/posts?_limit=5'
+    'https://jsonplaceholder.typicode.com/posts?_limit='+count
   );
 
   // useForm demo
