@@ -1,0 +1,122 @@
+.errorBoundary {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.errorContainer {
+  background: var(--bg-color);
+  border-radius: 12px;
+  padding: var(--spacing-xl);
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.errorIcon {
+  font-size: 4rem;
+  margin-bottom: var(--spacing-md);
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+  20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
+
+.errorTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: var(--spacing-sm);
+}
+
+.errorMessage {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-lg);
+  line-height: 1.6;
+}
+
+.errorDetails {
+  text-align: left;
+  margin: var(--spacing-lg) 0;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  padding: var(--spacing-md);
+  border: 1px solid var(--border-color);
+}
+
+.errorSummary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--text-color);
+  padding: var(--spacing-sm);
+  user-select: none;
+  transition: color 0.2s ease;
+}
+
+.errorSummary:hover {
+  color: var(--color-primary);
+}
+
+.errorContent {
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--border-color);
+}
+
+.errorName {
+  color: var(--text-color);
+  margin-bottom: var(--spacing-sm);
+  word-break: break-word;
+}
+
+.errorStack {
+  background: var(--bg-color);
+  padding: var(--spacing-md);
+  border-radius: 4px;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.errorActions {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: var(--spacing-lg);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .errorContainer {
+    padding: var(--spacing-lg);
+  }
+
+  .errorTitle {
+    font-size: 1.5rem;
+  }
+
+  .errorMessage {
+    font-size: 1rem;
+  }
+
+  .errorActions {
+    flex-direction: column;
+  }
+
+  .errorActions button {
+    width: 100%;
+  }
+}

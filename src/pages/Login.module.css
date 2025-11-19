@@ -1,0 +1,123 @@
+.loginContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 200px);
+    padding: 2rem;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.loginCard {
+    width: 100%;
+    max-width: 400px;
+    background-color: var(--card-bg, #ffffff);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    border: 1px solid var(--border-color, #e0e0e0);
+}
+
+.title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary, #333);
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.subtitle {
+    color: var(--text-secondary, #666);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-primary, #333);
+}
+
+.input {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color, #ccc);
+    font-size: 1rem;
+    transition: all 0.2s;
+    background-color: var(--input-bg, #fff);
+    color: var(--text-primary, #333);
+}
+
+.input:focus {
+    outline: none;
+    border-color: #646cff;
+    box-shadow: 0 0 0 3px rgba(100, 108, 255, 0.1);
+}
+
+.errorMessage {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.fullWidth {
+    width: 100%;
+}
+
+.footer {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-secondary, #666);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .loginCard {
+        background-color: #1a1a1a;
+        border-color: #333;
+    }
+
+    .input {
+        background-color: #242424;
+        border-color: #444;
+        color: #fff;
+    }
+
+    .title,
+    .label {
+        color: #fff;
+    }
+
+    .subtitle,
+    .footer {
+        color: #aaa;
+    }
+}

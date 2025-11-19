@@ -1,0 +1,132 @@
+.loadingContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.fullScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 9999;
+}
+
+[data-theme='dark'] .fullScreen {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.spinner {
+  position: relative;
+  display: inline-block;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.spinnerRing {
+  position: absolute;
+  border: 3px solid transparent;
+  border-top-color: var(--color-primary, #007bff);
+  border-right-color: var(--color-primary, #007bff);
+  border-radius: 50%;
+  animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  opacity: 0.8;
+}
+
+.spinnerRing:nth-child(1) {
+  animation-delay: -0.45s;
+  border-top-color: var(--color-primary, #007bff);
+  border-right-color: transparent;
+}
+
+.spinnerRing:nth-child(2) {
+  animation-delay: -0.3s;
+  border-top-color: var(--color-secondary, #6c757d);
+  border-right-color: transparent;
+  opacity: 0.6;
+}
+
+.spinnerRing:nth-child(3) {
+  animation-delay: -0.15s;
+  border-top-color: var(--color-primary, #007bff);
+  border-right-color: var(--color-primary, #007bff);
+  opacity: 0.4;
+}
+
+/* Sizes */
+.sm {
+  width: 24px;
+  height: 24px;
+}
+
+.sm .spinnerRing {
+  width: 24px;
+  height: 24px;
+  border-width: 2px;
+}
+
+.md {
+  width: 48px;
+  height: 48px;
+}
+
+.md .spinnerRing {
+  width: 48px;
+  height: 48px;
+  border-width: 3px;
+}
+
+.lg {
+  width: 72px;
+  height: 72px;
+}
+
+.lg .spinnerRing {
+  width: 72px;
+  height: 72px;
+  border-width: 4px;
+}
+
+.loadingText {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-color, #666);
+  font-weight: 500;
+}
+
+[data-theme='dark'] .loadingText {
+  color: var(--text-color, #aaa);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .loadingText {
+    font-size: 0.875rem;
+  }
+}
