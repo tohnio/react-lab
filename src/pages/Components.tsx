@@ -44,6 +44,7 @@ function Components() {
             <div className={styles.buttonGroup}>
               <Button variant="primary">Primary</Button>
               <Button variant="secondary">Secondary</Button>
+              <Button variant="info">Info</Button>
               <Button variant="success">Success</Button>
               <Button variant="danger">Danger</Button>
             </div>
