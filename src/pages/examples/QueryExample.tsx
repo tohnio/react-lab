@@ -2,6 +2,8 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Button from '../../components/common/Button';
+import styles from './QueryExample.module.css';
 
 interface Post {
     id: number;
@@ -63,69 +65,67 @@ export default function QueryExample() {
     };
 
     return (
-        <div className="p-6 max-w-4xl mx-auto">
-            <div className="mb-8 flex items-center justify-between">
-                <div>
-                    <h2 className="text-3xl font-bold text-gray-800">TanStack Query</h2>
-                    <p className="text-gray-600 mt-2">
+        <div className={styles.queryExample}>
+            <div className={styles.header}>
+                <div className={styles.headerContent}>
+                    <h2>TanStack Query</h2>
+                    <p>
                         Gerenciamento de estado assíncrono, cache e mutações.
                     </p>
                 </div>
-                <Link to="/modern" className="text-blue-600 hover:underline">← Voltar</Link>
+                <Link to="/modern">
+                    <Button variant="secondary" size="sm">
+                        ← Voltar
+                    </Button>
+                </Link>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className={styles.grid}>
                 {/* Form Section */}
-                <div className="lg:col-span-1">
-                    <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100 sticky top-6">
-                        <h3 className="text-xl font-bold mb-4 text-gray-800">Novo Post</h3>
-                        <form onSubmit={handleSubmit} className="space-y-4">
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">Título</label>
+                <div>
+                    <div className={styles.formCard}>
+                        <h3>Novo Post</h3>
+                        <form onSubmit={handleSubmit}>
+                            <div className={styles.formGroup}>
+                                <label className={styles.label}>Título</label>
                                 <input
                                     type="text"
                                     value={title}
                                     onChange={(e) => setTitle(e.target.value)}
-                                    className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+                                    className={styles.input}
                                     placeholder="Digite o título..."
                                 />
                             </div>
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">Conteúdo</label>
+                            <div className={styles.formGroup}>
+                                <label className={styles.label}>Conteúdo</label>
                                 <textarea
                                     value={body}
                                     onChange={(e) => setBody(e.target.value)}
-                                    className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all h-32 resize-none"
+                                    className={styles.textarea}
                                     placeholder="Digite o conteúdo..."
                                 />
                             </div>
-                            <button
+                            <Button
                                 type="submit"
                                 disabled={mutation.isPending}
-                                className="w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+                                loading={mutation.isPending}
+                                className="w-full"
                             >
-                                {mutation.isPending ? (
-                                    <>
-                                        <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-                                        Enviando...
-                                    </>
-                                ) : (
-                                    'Criar Post'
-                                )}
-                            </button>
+                                Criar Post
+                            </Button>
                         </form>
                     </div>
                 </div>
 
                 {/* List Section */}
-                <div className="lg:col-span-2 space-y-4">
-                    <h3 className="text-xl font-bold text-gray-800 mb-4">
+                <div>
+                    <h3 className={styles.sectionTitle}>
                         Posts Recentes
-                        {isLoading && <span className="text-sm font-normal text-gray-500 ml-2">(Carregando...)</span>}
+                        {isLoading && <span className={styles.loadingText}>(Carregando...)</span>}
                     </h3>
 
                     {isError && (
-                        <div className="p-4 bg-red-50 text-red-600 rounded-lg border border-red-100">
+                        <div className={styles.error}>
                             Erro ao carregar posts: {error.message}
                         </div>
                     )}
@@ -133,27 +133,20 @@ export default function QueryExample() {
                     {isLoading && !posts ? (
                         // Skeleton Loading
                         [...Array(3)].map((_, i) => (
-                            <div key={i} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 animate-pulse">
-                                <div className="h-6 bg-gray-200 rounded w-3/4 mb-4"></div>
-                                <div className="h-4 bg-gray-200 rounded w-full mb-2"></div>
-                                <div className="h-4 bg-gray-200 rounded w-2/3"></div>
+                            <div key={i} className={styles.skeleton}>
+                                <div className={styles.skeletonTitle}></div>
+                                <div className={styles.skeletonBody}></div>
+                                <div className={styles.skeletonBodyShort}></div>
                             </div>
                         ))
                     ) : (
                         posts?.map((post) => (
-                            <div
-                                key={post.id}
-                                className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all border border-gray-100 group"
-                            >
-                                <div className="flex items-start justify-between">
-                                    <h4 className="font-bold text-lg text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">
-                                        {post.title}
-                                    </h4>
-                                    <span className="text-xs font-mono bg-gray-100 px-2 py-1 rounded text-gray-500">
-                                        ID: {post.id}
-                                    </span>
+                            <div key={post.id} className={styles.postCard}>
+                                <div className={styles.postHeader}>
+                                    <h4 className={styles.postTitle}>{post.title}</h4>
+                                    <span className={styles.postId}>ID: {post.id}</span>
                                 </div>
-                                <p className="text-gray-600 leading-relaxed">{post.body}</p>
+                                <p className={styles.postBody}>{post.body}</p>
                             </div>
                         ))
                     )}
