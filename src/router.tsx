@@ -25,6 +25,7 @@ const QueryExample = lazy(() => import('./pages/examples/QueryExample'));
 const FormExample = lazy(() => import('./pages/examples/FormExample'));
 const ZustandExample = lazy(() => import('./pages/examples/ZustandExample'));
 const TailwindExample = lazy(() => import('./pages/examples/TailwindExample'));
+const E2EExample = lazy(() => import('./pages/examples/E2EExample'));
 
 /**
  * ProtectedRoute component that checks authentication status
@@ -173,6 +174,14 @@ export const router = createBrowserRouter([
     element: (
       <SuspenseWrapper>
         <TailwindExample />
+      </SuspenseWrapper>
+    ),
+  },
+  {
+    path: '/modern/e2e',
+    element: (
+      <SuspenseWrapper>
+        <E2EExample />
       </SuspenseWrapper>
     ),
   },

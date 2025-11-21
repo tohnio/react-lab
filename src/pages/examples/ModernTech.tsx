@@ -31,6 +31,13 @@ const examples = [
         colorClass: styles.blue,
         icon: '🎨',
     },
+    {
+        title: 'E2E Testing',
+        description: 'Testes End-to-End com Playwright.',
+        path: '/modern/e2e',
+        colorClass: styles.purple,
+        icon: '🎭',
+    },
 ];
 
 export default function ModernTech() {
